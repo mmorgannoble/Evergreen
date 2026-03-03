@@ -1956,6 +1956,22 @@ function($uibModal , $q , egCore , egAlertDialog , egConfirmDialog,  egAddCopyAl
                     });
                 }
                 print_context.patron = egCore.idl.toHash(data.patron);
+                 /* Use primary name field if no preferred name */
+                 var pref_prefix = print_context.patron.pref_prefix;
+                 if (!pref_prefix) print_context.patron.pref_prefix = print_context.patron.prefix;
+
+                 var pref_first = print_context.patron.pref_first_given_name;
+                 if (!pref_first) print_context.patron.pref_first_given_name = print_context.patron.first_given_name;
+
+                 var pref_second = print_context.patron.pref_second_given_name;
+                 if (!pref_second) print_context.patron.pref_second_given_name = print_context.patron.second_given_name;
+
+                 var pref_family = print_context.patron.pref_family_name;
+                 if (!pref_family) print_context.patron.pref_family_name = print_context.patron.family_name;
+
+                 var pref_suffix = print_context.patron.pref_suffix;
+                 if (!pref_suffix) print_context.patron.pref_suffix = print_context.patron.suffix;
+
             }
 
             var sound = 'info.checkin.transit';
